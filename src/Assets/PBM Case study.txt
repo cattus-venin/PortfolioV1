@@ -1,0 +1,119 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+
+contract PurposeBoundMoney is ERC1155, ERC1155Burnable, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private tokenIdCounter;
+
+    mapping(uint256 => bool) public isPurposeBound;
+    mapping(address => bool) public whitelist;
+    mapping(address => bool) public blacklist;
+    mapping(uint256 => uint256) public redeemableYear;
+    mapping(uint256 => uint256) public collateralValue; // Collateral value in wei
+    mapping(uint256 => uint256) public lockedCollateral; // Locked collateral in wei
+    mapping(uint256 => address) public tokenHolders; // Token holder address for each token ID
+
+    modifier onlyWhitelisted() {
+        require(whitelist[msg.sender], "You are not whitelisted");
+        require(!blacklist[msg.sender], "You are blacklisted");
+        _;
+    }
+
+    modifier onlyTokenHolder(uint256 tokenId) {
+        require(tokenHolders[tokenId] == msg.sender, "You are not the token holder");
+        _;
+    }
+
+    constructor() ERC1155("Token URI: {id}.json") {
+        whitelist[msg.sender] = true;
+    }
+
+    // Add an address to the whitelist
+    function addToWhitelist(address account) external onlyOwner {
+        whitelist[account] = true;
+    }
+
+    // Add an address to the blacklist
+    function addToBlacklist(address account) external onlyOwner {
+        blacklist[account] = true;
+    }
+
+    // Mint a new Purpose Bound Token with a specific redeemable year and collateral value, and send it to the recipient
+    function mintPurposeBoundToken(address recipient, uint256 amount, uint256 year) external payable onlyOwner {
+        require(msg.value > 0, "Collateral value must be greater than zero");
+
+        uint256 tokenId = tokenIdCounter.current();
+        tokenIdCounter.increment();
+        isPurposeBound[tokenId] = true;
+        redeemableYear[tokenId] = year;
+        collateralValue[tokenId] = msg.value; // Collateral value in wei
+        _mint(recipient, tokenId, amount, "");
+        tokenHolders[tokenId] = recipient;
+    }
+
+    // Transfer tokens to a recipient (if conditions are met for Purpose Bound Tokens)
+    function transfer(address to, uint256 tokenId, uint256 amount) external onlyTokenHolder(tokenId) {
+        require(whitelist[to], "Recipient is not whitelisted"); // Check if the recipient is whitelisted
+        require(balanceOf(msg.sender, tokenId) >= amount, "Insufficient balance");
+
+        if (isPurposeBound[tokenId]) {
+            require(isRedeemable(tokenId), "Token not redeemable in 2023");
+
+            // Redemption logic: Release locked collateral to the recipient
+            uint256 collateralAmount = lockedCollateral[tokenId];
+            if (collateralAmount > 0) {
+                delete lockedCollateral[tokenId]; // Clear the locked collateral
+                (bool success, ) = msg.sender.call{value: collateralAmount}("");
+                require(success, "Collateral transfer failed");
+            }
+
+            // Burning the token after redemption
+            _burn(msg.sender, tokenId, amount);
+        }
+
+        _safeTransferFrom(msg.sender, to, tokenId, amount, "");
+    }
+
+    // Function to lock collateral in the vault
+    function lockCollateral(uint256 tokenId, uint256 amount) external payable onlyOwner {
+        require(isPurposeBound[tokenId], "Token is not purpose-bound");
+        require(msg.value == amount, "Incorrect collateral value sent");
+
+        lockedCollateral[tokenId] += msg.value; // Locked collateral in wei
+        require(lockedCollateral[tokenId] <= collateralValue[tokenId], "Locked collateral exceeds collateral value");
+    }
+
+    // Function to release locked collateral to the intended recipient
+    function releaseCollateral(uint256 tokenId, uint256 amount, address recipient) external onlyOwner {
+        require(isPurposeBound[tokenId], "Token is not purpose-bound");
+        require(lockedCollateral[tokenId] >= amount, "Not enough locked collateral");
+
+        (bool success, ) = recipient.call{value: amount}("");
+        require(success, "Collateral release failed");
+
+        lockedCollateral[tokenId] -= amount;
+    }
+
+    // Function to check if the token is redeemable in the current year (2023)
+    function isRedeemable(uint256 tokenId) internal view returns (bool) {
+        return redeemableYear[tokenId] == getCurrentYear();
+    }
+
+    // Function to get the current year
+    function getCurrentYear() internal view returns (uint256) {
+        return (block.timestamp / 31556952) + 1970; // Approx
+    }
+    
+    // Function to allow the owner to update PBM conditions
+    function updatePBMCondition(uint256 tokenId, bool purposeBound) external onlyOwner {
+        isPurposeBound[tokenId] = purposeBound;
+    }
+
+    // Fallback function to receive Ether sent directly to the contract
+    receive() external payable {}
+}

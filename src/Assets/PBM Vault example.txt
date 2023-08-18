@@ -1,0 +1,81 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "@openzeppelin/contracts/token/ERC20/presets/ERC20PresetMinterPauser.sol";
+
+contract CryptoVault {
+    address public owner;
+    mapping(address => uint256) public balances;
+
+    // Address of the ERC20 token to be deposited in this vault
+    address public tokenAddress;
+
+    // Vault Token details
+    ERC20PresetMinterPauser public vaultToken;
+    string public constant VAULT_TOKEN_NAME = "VaultToken";
+    string public constant VAULT_TOKEN_SYMBOL = "VTOKEN";
+
+    event Deposit(address indexed account, uint256 amount);
+    event Withdraw(address indexed account, uint256 amount);
+
+    constructor(address _tokenAddress) {
+        owner = msg.sender;
+        tokenAddress = _tokenAddress;
+
+        // Create the VaultToken contract
+        vaultToken = new ERC20PresetMinterPauser(VAULT_TOKEN_NAME, VAULT_TOKEN_SYMBOL);
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this function.");
+        _;
+    }
+
+    // Function to deposit ERC20 tokens into the vault and issue VaultToken
+    function deposit(uint256 amount) external {
+        require(amount > 0, "Amount must be greater than zero.");
+
+        // Transfer tokens from the user to this contract
+        IERC20 token = IERC20(tokenAddress);
+        require(token.transferFrom(msg.sender, address(this), amount), "Token transfer failed.");
+
+        // Mint VaultToken to the user
+        vaultToken.mint(msg.sender, amount);
+
+        // Update user balance in the vault
+        balances[msg.sender] += amount;
+
+        emit Deposit(msg.sender, amount);
+    }
+
+    // Function to withdraw ERC20 tokens from the vault and burn VaultToken
+    function withdraw(uint256 amount) external {
+        require(amount > 0, "Amount must be greater than zero.");
+        require(balances[msg.sender] >= amount, "Insufficient balance.");
+
+        // Burn VaultToken from the user
+        vaultToken.burnFrom(msg.sender, amount);
+
+        // Transfer tokens from the vault to the user
+        IERC20 token = IERC20(tokenAddress);
+        require(token.transfer(msg.sender, amount), "Token transfer failed.");
+
+        // Update user balance in the vault
+        balances[msg.sender] -= amount;
+
+        emit Withdraw(msg.sender, amount);
+    }
+
+    // Function to check the balance of a user in the vault
+    function getBalance() external view returns (uint256) {
+        return balances[msg.sender];
+    }
+
+    // Function to transfer ownership of the vault
+    function transferOwnership(address newOwner) external onlyOwner {
+        require(newOwner != address(0), "Invalid address.");
+        owner = newOwner;
+    }
+}
