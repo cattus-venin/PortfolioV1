@@ -3,7 +3,8 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useState } from 'react';
 import LandingGIF from "./Assets/Portfolio Landing New Gif.gif"
 import { MotionAnimate } from 'react-motion-animate'
-import { Outlet, BrowserRouter, Route,Routes, useLocation, useHistory, Link } from "react-router-dom";
+import { Outlet, Route, Routes, useLocation, useHistory, Link } from "react-router-dom";
+import { HashRouter as BrowserRouter } from "react-router-dom";
 import React from "react";
 import Landing from "./Landing Page.js";
 import Project from "./projects page.js";
@@ -49,7 +50,7 @@ const Navbar = () => {
                 </a>
                 <a
                   className="text-gray-500 hover:text-transparent bg-clip-text bg-gradient-to-r to-emerald-300 from-purple-400 hover:bg-green-300 px-3 py-2 rounded-md text-xl font-extrabold font-poppins hover:bg-gradient-to-r to-emerald-300 from-purple-400">
-                  <Link to="/Experience" onClick={() => {window.location.href="/Experience"}} >Experiences</Link>
+                  <Link to="/Experience"} >Experiences</Link>
                 </a>
                 <a
                   className="text-gray-500 hover:text-white px-3 py-2 rounded-md text-xl font-extrabold font-poppins">
