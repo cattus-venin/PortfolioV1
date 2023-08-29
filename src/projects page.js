@@ -2,7 +2,7 @@ import { motion,AnimatePresence } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useState } from 'react';
 import LandingGIF from "./Assets/Portfolio Landing New Gif.gif"
-import HASUSS from "./Assets/House_Affordability.png"
+import HASUSS from "./build//Assets/House_Affordability.png"
 import Tripify from "./Assets/Tripify.png"
 import WalletProof from "./Assets/WalletProof Logo.png"
 import DefiBank from "./Assets/Defi Bank.png"
