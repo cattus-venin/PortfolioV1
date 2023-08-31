@@ -45,7 +45,8 @@ var [APMCert, PADM, TTYC, FI, SVM, ITEDA, SUSSCert, Poster, GAC] =
 	]
 
 function Experiences() {
-  const [fade, setFade] = useState(true);
+	const [fade, setFade] = useState(true);
+    const [fade2, setFade2] = useState(true);
 
   const handleClick = () => {
 	if (fade===true){
@@ -55,6 +56,15 @@ function Experiences() {
 		setFade(true);
 	}
   };
+	const handleClick2 = () => {
+		if (fade2 === true) {
+			setFade2(false);
+		}
+		else {
+			setFade2(true);
+		}
+	};
+
 
   useEffect(() => {
 	  document.addEventListener("click", handleClickOutside,true)
@@ -65,11 +75,12 @@ function Experiences() {
 	  if (!refOne.current.contains(e.target)){
 		  // outside div
 		  setFade(true);
+		  setFade2(true);
 	  }
 	  else{
 		  // Inside div
 	  }
-  }
+	}
 
   return (
       <>
@@ -172,15 +183,54 @@ function Experiences() {
 				<div className="container max-w-5xl px-4 py-8 mx-20">
 					<div className="grid gap-4 mx-20 sm:grid-cols-13">
 						<div className="relative col-span-12 px-4 space-y-6 sm:col-span-9">
+							<div className={`transition-all duration-300	 ${fade2 ? "opacity-100" : "opacity-20"									  }`}>
 							<div className="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:dark:bg-gray-700">
 								<div className="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:dark:bg-violet-400">
 									<h3 className="text-xl font-semibold font-poppins"><img class="w-14 h-14 rounded-full" src={QCD} alt="Rounded avatar"/><a href="https://www.qcd-tech.com/">QCD Technology</a><small class="ml-2 font-poppins text-gray-400"> Customer Service Officer Intern</small></h3>
 									<time className="text-xs tracking-wide uppercase dark:text-gray-400">Sep 2019 - Feb 2020 (5 months)</time>
 									<p className="mt-3">Southeast Asia's largest Apple Authorised Service Provider in Singapore, Malaysia and Indonesia. As a customer service officer, I was responsible for responding to customers inquiries and give the proper diagnosis
-									regarding their <a className="text-blue-600" href="https://www.apple.com/sg/">Apple</a> devices.
+											  regarding their <a className="text-blue-600" href="https://www.apple.com/sg/">Apple</a> devices.
+											  My experience at QCD shaped my professional growth and personal development, equipping me with a diverse skill set and a strong foundation in technology and customer service.</p>
+									<p className="mt-3">
+											  Through hands-on experience with diagnosing Apple devices, I have cultivated a deep understanding of hardware and software components. This expertise empowers me to efficiently diagnose issues, implement effective solutions and adapt to changes quickly.
+											  Engaging with customers has also enhanced my interpersonal communication skills. I adeptly convey technical concepts in an accessible manner, ensuring customers are well-informed and comfortable throughout the repair process.
 									</p>
 								</div>
-							</div>
+								</div>
+								  </div>
+								  <div className="flex flex-col justify-center items-center">
+									  <button id="dropdownDefaultButton1" data-dropdown-toggle="dropdown1" class="font-poppins text-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+										  type="button" onClick={handleClick2}>More
+										  <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+									  <div id="dropdown1" class="z-10 hidden divide-y divide-gray-100 rounded-lg w-5/6 dark:bg-gray-700">
+										  <ul class="space-y-4 text-left text-gray-500 dark:text-gray-400">
+											  <li class="flex items-center space-x-3">
+												  <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+													  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+												  </svg>
+												  <span className="font-medium text-gray-800 dark:text-gray-800 font-poppins">Customer Service</span>
+											  </li>
+											  <li class="flex items-center space-x-3">
+												  <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+													  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+												  </svg>
+												  <span className="font-medium text-gray-800 dark:text-gray-800 font-poppins">Learning Agility</span>
+											  </li>
+											  <li class="flex items-center space-x-3">
+												  <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+													  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+												  </svg>
+												  <span className="font-medium text-gray-800 dark:text-gray-800 font-poppins">Team Collaboration</span>
+											  </li>
+											  <li class="flex items-center space-x-3">
+												  <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+													  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+												  </svg>
+												  <span className="font-medium text-gray-800 dark:text-gray-800 font-poppins">Stress Management</span>
+											  </li>
+										  </ul>
+									  </div>
+								  </div>
 						</div>
 					</div>
 				</div>
