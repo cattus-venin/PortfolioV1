@@ -1,7 +1,9 @@
 ﻿import { motion,AnimatePresence } from "framer-motion";
 import React from "react";
 import { MotionAnimate } from 'react-motion-animate'
+/*
 import HASUSS from "../Assets/House_Affordability.png"
+*/
 import { Outlet, BrowserRouter, Route,Routes, useLocation, useHistory, Link } from "react-router-dom";
 
 const SUSS = () => {
@@ -34,8 +36,8 @@ const SUSS = () => {
               <p class="font-poppins pt-5 pb-5 text-gray-900">SUSS AVC22 is a poster challenge, where students tell a story on a topic related to Singapore of their choice, be it health, education, social-economics, public safety, among others. 
               Data are sourced from <a className="text-blue-700" href="https://www.singstat.gov.sg/"> Singstat </a> and <a className="text-blue-700" href="https://data.gov.sg/ "> Data.gov </a>and must be used for visualisation or analytical work towards the poster. The work should cover an interesting 
               facet about Singapore using data from these databases.</p>
-              <img src={HASUSS} alt="" />
-              <figcaption class="text-sm text-center text-gray-500 dark:text-gray-300 font-poppins">Submitted poster - <a className="text-blue-700 font-poppins" target="_blank" href={HASUSS}>Click here to view</a></figcaption>
+              <img src="https://ipfs.io/ipfs/QmUdntZvrP86WMVvaQcekT8FviKcpL3PLU4TV4gHNmfZMp?filename=House_Affordability.png" alt="" />
+              <figcaption class="text-sm text-center text-gray-500 dark:text-gray-300 font-poppins">Submitted poster - <a className="text-blue-700 font-poppins" target="_blank" href="https://ipfs.io/ipfs/QmUdntZvrP86WMVvaQcekT8FviKcpL3PLU4TV4gHNmfZMp?filename=House_Affordability.png">Click here to view</a></figcaption>
               <p class="pt-10 font-poppins">For this challenge, I decided that I would look deeper into the issues surrounding housing affordability in Singapore.
               Despite having a high homeownershop rate of nearly 90 per cent in 2022 where housing is deemed relatively affordable and attainable, there are still
               concerns and doubts amongst Singaporeans and especially graduates who had just stepped foot into the job market and is looking for a place to settle in.

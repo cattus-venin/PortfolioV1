@@ -2,11 +2,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import { MotionAnimate } from 'react-motion-animate'
 import { Outlet, BrowserRouter, Route, Routes, useLocation, useHistory, Link } from "react-router-dom";
+/*
 import PBM1 from "../Assets/PBM Code Transfer.png"
 import PBM2 from "../Assets/PBM Code Mint.png"
 import PBM3 from "../Assets/PBM Code WL.png"
 import Code1 from "../Assets/PBM Case study.txt"
 import Code2 from "../Assets/PBM Vault example.txt"
+*/
+
+var [ PBM1, PBM2, PBM3, Code1, Code2 ] =
+    [
+        "https://ipfs.io/ipfs/QmdWhq213VCx3GFH3BonaXov1wftqLZVrSQdMLGUqS1UHY?filename=PBM%20Code%20Transfer.png",
+        "https://ipfs.io/ipfs/QmS83E42k1TGaorvELwGNxbBrB3TJDGVnX7LfBWxt5U63E?filename=PBM%20Code%20Mint.png",
+        "https://ipfs.io/ipfs/Qmf3RSFaWKyjtv5UAPGq6RTuLxRFCawTy7uRodPqFNdxYT?filename=PBM%20Code%20WL.png",
+        "https://ipfs.io/ipfs/QmUQAsT1uR1ShcNY3NFrMZeYuKdrDw8UjmApGNmJ6XT6Vw?filename=PBM%20Case%20study.txt",
+        "https://ipfs.io/ipfs/QmcKFfeL8JbERn2Y3mqo8vdjebecKvwfsaGXjfspVPTS3e?filename=PBM%20Vault%20example.txt"
+    ]
 
 const PBM = () => {
     return (

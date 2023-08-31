@@ -1,9 +1,9 @@
 import { motion,AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { useEffect, useRef, useState, Suspense} from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
+import 'flowbite';
+import { Dropdown } from 'flowbite';
 import { MotionAnimate } from 'react-motion-animate'
-import Spline from '@splinetool/react-spline';
-import JupytonLogo from "./Assets/Jupyton Logo Dark.png"
+/*
 import JupytonGif from "./Assets/Jupyton Gif.gif"
 import QCD from "./Assets/qcd-technology-edited.png"
 import Ukiss1 from "./Assets/Ukiss Design 1.png"
@@ -17,17 +17,38 @@ import TTYC from "./Assets/Tik Tok Youth Camp.png"
 import FI from "./Assets/Diploma in Financial Informatics.png"
 import SVM from "./Assets/SVM Cert.jpg"
 import ITEDA from "./Assets/ITE DA.jpg"
-import testimonial from "./Assets/Testimonial.jpg"
 import SUSSCert from "./Assets/SUSS Analytics Challenge.png"
 import Poster from "./Assets/Mobile Blockchain ticketing system.png"
-import 'flowbite';
-import { Dropdown } from 'flowbite';
+*/
+var [JupytonGif, QCD, Ukiss1, Ukiss2, Ukiss3, Ukiss4, Ukiss5] =
+	[
+		"https://ipfs.io/ipfs/QmRq3ngAZh5WKFgwMQ3mdRSuNqMsQEovpr6tNCjmYhVR1L?filename=Jupyton%20Gif.gif",
+		"https://ipfs.io/ipfs/QmSsNerQDz2cYCvsKjQHKv92jKRVwdnqR7X28mHqm6Y6st?filename=qcd-technology-edited.png",
+		"https://ipfs.io/ipfs/QmQvHkqYvUGPWTnZSCX7PcBRyBKNKPY3fTr7HLUmoABUm5?filename=Ukiss%20Design%201.png",
+		"https://ipfs.io/ipfs/QmTJM5uT4AFCH1xrj1jTELzaAbUNRWJURArCaiKohvNXm9?filename=Ukiss%20Design%202.png",
+		"https://ipfs.io/ipfs/QmemLieftdxRQkLbbaF3sgnbctJpucvMwfvEfzgDi2ENSY?filename=Ukiss%20Design%203.png",
+		"https://ipfs.io/ipfs/QmddthL8z2HtW8HTekavaLtbiEFT7UDPPhzGPUdpJ4gTQQ?filename=Ukiss%20Design%204.png",
+		"https://ipfs.io/ipfs/QmTWcCp9EgKaM46jwU4bUn7mNPPKkfhWhMCAiocFeC7HEm?filename=Ukiss%20Design%205.png"
+	]
+
+var [APMCert, PADM, TTYC, FI, SVM, ITEDA, SUSSCert, Poster, GAC] =
+	[
+		"https://ipfs.io/ipfs/QmZxN2KwabuPMPZBipMYH9Dsrv5AP2pbER6YsFkNvtuRHp?filename=APM%20Cert.png",
+		"https://ipfs.io/ipfs/QmVREzrZy1YPTVe9haxNRYRjgLtag2j5oMyUbJhZKvbKZ8?filename=LinkedIn%20PADM.png",
+		"https://ipfs.io/ipfs/QmaAGcTY3aAuDGwjhqj8z6g9eWBxyZWqzKLL9V4LfXb3Ww?filename=Tik%20Tok%20Youth%20Camp.png",
+		"https://ipfs.io/ipfs/QmYLjfokZFJr29ipi4pCYNM2gYuXouzUurbydHR5PiR8a3?filename=Diploma%20in%20Financial%20Informatics.png",
+		"https://ipfs.io/ipfs/QmQj4Qn9GVkMyk2fRpwHPwQz7ABb5ji8NN287X55B1MekF?filename=SVM%20Cert.jpg",
+		"https://ipfs.io/ipfs/QmXHpc2NNX2sxJNwRhtTnxUhhjgsNDrw76wHmhoeecpjWo?filename=ITE%20DA.jpg",
+		"https://ipfs.io/ipfs/QmQS2xpN7fgwgQH1Sni1XZbYhVSY3Wv89md3xxuYkUVjHz?filename=SUSS%20Analytics%20Challenge.png",
+		"https://ipfs.io/ipfs/QmUJYnJAZhh4kTh5HX321kzeMnib5oYMTvuD85s7UJT6N9?filename=Mobile%20Blockchain%20ticketing%20system.png",
+		"https://ipfs.io/ipfs/QmU8KcBHL3bvNCrwwKKK6dQWqGVXjpn8TNwb1gSBW4fwVL?filename=google-data-analytics-certificate.png"
+	]
 
 function Experiences() {
   const [fade, setFade] = useState(true);
 
   const handleClick = () => {
-	if (fade==true){
+	if (fade===true){
 		setFade(false);
 	}
 	else{
@@ -181,14 +202,15 @@ function Experiences() {
           >
             <div className="relative h-48 md:h-64">
               <img
-                alt="Project 1"
+				src={GAC}
+                alt="https://ipfs.io/ipfs/QmXWstSRNqiZ9WNdWZWVLRSqPzCwe6AAakDY7GEXdLG9x8?filename=GoogleDataAnalyticsCertificate.jpg"
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
               />
             </div>
-            <h2 className="text-xl font-bold text-gray-800 mt-4 mb-2 font-poppins">
-              Google Data Analytics Professional Certificate
+            <h2 className="text-xl font-bold text-gray-800 mt-4 mb-2 font-poppins hover:text-blue-400" >
+              <a href="https://www.credly.com/badges/77fa9ea7-12cc-40e4-b2be-f6e44d89c364/linked_in_profile">Google Data Analytics Professional Certificate</a>
             </h2>
             <p className="text-sm text-gray-700 mb-4 font-poppins">
 			This program includes over 180 hours of instruction and hundreds of practice-based assessments, which simulates real-world data analytics scenarios that are critical for success in the workplace. The content is highly interactive and exclusively developed by Google employees with decades of experience in data analytics.

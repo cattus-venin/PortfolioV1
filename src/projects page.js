@@ -1,6 +1,7 @@
 import { motion,AnimatePresence } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useState } from 'react';
+/*
 import LandingGIF from "./Assets/Portfolio Landing New Gif.gif"
 import HASUSS from "./Assets/House_Affordability.png"
 import Tripify from "./Assets/Tripify.png"
@@ -8,6 +9,7 @@ import WalletProof from "./Assets/WalletProof Logo.png"
 import DefiBank from "./Assets/Defi Bank.png"
 import CF from "./Assets/Crowdfunding SS.png"
 import PBMi from "./Assets/PBM.png"
+*/
 import { MotionAnimate } from 'react-motion-animate'
 import { Outlet, BrowserRouter, Route,Routes, useLocation, useHistory, Link } from "react-router-dom";
 import 'flowbite';
@@ -28,7 +30,7 @@ function Project() {
           >
             <div className="relative h-48 md:h-64">
               <img
-                src={HASUSS}
+                src="https://ipfs.io/ipfs/QmUdntZvrP86WMVvaQcekT8FviKcpL3PLU4TV4gHNmfZMp?filename=House_Affordability.png"
                 alt="Project 1"
                 layout="fill"
                 objectFit="cover"
@@ -94,7 +96,7 @@ function Project() {
           >
             <div className="relative h-48 md:h-64">
               <img
-                src={DefiBank}
+                src="https://ipfs.io/ipfs/QmeoV4b1Fnt61b1w9TwAmc4YZG8eYMCx1kS7iWvDJH3Viq?filename=Defi%20Bank.png"
                 alt="Project 1"
                 layout="fill"
                 objectFit="cover"
@@ -125,7 +127,7 @@ function Project() {
           >
             <div className="relative h-48 md:h-64">
               <img
-                src={CF}
+                src="https://ipfs.io/ipfs/QmdxDfR3St8K6mzYhgDFUKqtMUNouchhwYwvVhUYhkkJYY?filename=Crowdfunding%20SS.png"
                 alt="Project 2"
                 className="rounded-lg w-full h-full object-cover"
               />
@@ -153,7 +155,7 @@ function Project() {
           >
             <div className="relative h-48 md:h-64">
               <img
-                src={PBMi}
+                src="https://ipfs.io/ipfs/QmV193ipQhkNpGgE8psB2uFJjE2s63gXL8tKGvNjyLuDjd?filename=PBM.png"
                 alt="Project 3"
                 className="rounded-lg w-full h-full object-cover"
               />
@@ -195,7 +197,7 @@ function Project() {
           >
             <div className="relative h-48 md:h-64">
               <img
-                src={Tripify}
+                src="https://ipfs.io/ipfs/QmXqMJx8x6Av3WowqUKCBpoT9W3y5PPPrCszD4KHCu4xV8?filename=Tripify.png"
                 alt="Project 1"
                 layout="fill"
                 objectFit="cover"
@@ -225,7 +227,7 @@ function Project() {
           >
             <div className="relative h-48 md:h-64">
               <img
-                src={WalletProof}
+                src="https://ipfs.io/ipfs/QmfUVfNHr6PHmcPZo7zBM3xtAF2rr63PxHj1aBssA59Jik?filename=WalletProof%20Logo.png"
                 alt="Project 1"
                 className="rounded-lg"
                 layout="fill"
