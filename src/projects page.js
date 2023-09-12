@@ -273,6 +273,30 @@ function Project() {
             <iframe width="80%" height="80%" src="https://lottie.host/?file=03de394a-e1a3-422c-9a2e-85532716f657/RuIRxBxdpW.json"></iframe>
             </div>
             <h2 className="text-xl font-bold text-gray-800 mt-4 mb-2">
+              LangChain AI Chatbot
+            </h2>
+            <p className="text-gray-700 mb-4">
+              This project is still in the works :) Do check out my other projects!
+            </p>
+            <Link to="/Project/Chatbot">
+            <a
+              href="#"
+              className="inline-block bg-gray-800 text-white rounded-full px-4 py-2 hover:bg-gray-700 transition-colors duration-300"
+            >
+              View project
+            </a>
+            </Link>
+          </motion.div>
+          <motion.div
+            className="bg-white shadow rounded-lg p-4 md:p-8"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <div className="relative h-48 md:h-64">
+            <iframe width="80%" height="80%" src="https://lottie.host/?file=03de394a-e1a3-422c-9a2e-85532716f657/RuIRxBxdpW.json"></iframe>
+            </div>
+            <h2 className="text-xl font-bold text-gray-800 mt-4 mb-2">
               More Projects Coming soon..
             </h2>
             <p className="text-gray-700 mb-4">

@@ -15,6 +15,8 @@ import BankPage from "./Projects/Blockchain/BankPage.js"
 import PBM from "./Projects/PBM.js"
 import CrowdFund from "./Projects/Blockchain/CrowdFund/CrowdFund.js"
 import Donate from "./Projects/Blockchain/CrowdFund/components/DonatePage.jsx"
+import Chatbot from "./Projects/Chatbot/Chatbot.js"
+import ChatbotPage from "./Projects/Chatbot/Chatbot Page.js"
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -155,6 +157,8 @@ function Portfolio() {
            <Route exact path='/Project/CrowdFund' element={< CrowdFund />}></Route>
            <Route exact path='/Project/CrowdFund/Donate' element={< Donate />}></Route>
            <Route exact path='/Project/PBM' element={< PBM />}></Route>
+           <Route exact path='/Project/Chatbot' element={< Chatbot />}></Route> 
+           <Route exact path='/Project/Chatbot/ChatbotPage/:id' element={< ChatbotPage />}></Route>
            </Routes>
         </BrowserRouter>
       </>
