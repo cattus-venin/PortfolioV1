@@ -5,7 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase.js";
 
-const botAPIKEY = process.env.CHAT_BOT_API
+const botAPIKEY = process.env.REACT_APP_CHAT_BOT_API
 
 const ChatbotPage = () => {
         const navigate = useNavigate();
