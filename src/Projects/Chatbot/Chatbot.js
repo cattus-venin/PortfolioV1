@@ -4,8 +4,6 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword} from "fireb
 import { initializeApp } from "firebase/app";
 import { auth } from "./firebase.js";
 
-// api = sec_HXQdGQMQ10vRm4BX6HGuHLDX1MhlYgPU
-// tokenid = src_QyiduN92Gi9aWAoQuluMp
 
 const Chatbot = () => {
     const [AccStatus, setAccStatus] = useState(true)
@@ -154,11 +152,6 @@ const Chatbot = () => {
                                                         <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                                                             Password
                                                         </label>
-                                                        <div className="text-sm">
-                                                            <a className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                                                Forgot password?
-                                                            </a>
-                                                        </div>
                                                     </div>
                                                     <div className="mt-2">
                                                         <input
