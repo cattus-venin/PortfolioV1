@@ -521,7 +521,6 @@ const ChatbotPage = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <form onSubmit={handlesend}>
                                             <div
                                                 class="flex flex-row items-center h-20 rounded-xl bg-white w-full px-4"
                                                 >
@@ -540,7 +539,7 @@ const ChatbotPage = () => {
                                                     <div class="relative w-full mt-2">
                                                         <input
                                                             type="text"
-                                                            value={message}
+                                                            value={message ?? ""}
                                                             class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                                                             onChange={(e) => setMessage(e.target.value)}
                                                         />
@@ -548,8 +547,9 @@ const ChatbotPage = () => {
                                                 </div>
                                                 <div class="ml-4 mt-2">
                                                     <button
-                                                            class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-2 flex-shrink-0"
-                                                            type="submit"
+                                                                class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-2 flex-shrink-0"
+                                                                type="submit"
+                                                                onClick={handlesend}
                                                     >
                                                         <span>Send</span>
                                                         <span class="ml-2">
@@ -571,7 +571,6 @@ const ChatbotPage = () => {
                                                     </button>
                                                  </div>
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
