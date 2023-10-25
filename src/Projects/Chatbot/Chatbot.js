@@ -9,12 +9,12 @@ const Chatbot = () => {
     const [AccStatus, setAccStatus] = useState(true)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [authUser, setAuthUser] = useState(null);
     const navigate = useNavigate();
 
 
     const navigatetoChat = (id) => {
         navigate(`/Project/Chatbot/ChatbotPage/${id}`);
+        window.location.reload();
     }
 
     const changeStatus = (e) => {
@@ -31,6 +31,7 @@ const Chatbot = () => {
             })
             .catch((error) => {
                 console.log(error);
+                alert("Incorrect email or password entered. Please try again.");
             });
     };
     const signUp = (e) => {

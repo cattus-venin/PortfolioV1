@@ -1,25 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 
-import('tailwindcss').Config
+const withMT = require("@material-tailwind/react/utils/withMT");
 
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        'poppins': ['Poppins', 'sans-serif']
-      },
+module.exports = withMT({
+    content: [
+        "./src/**/*.{js,jsx,ts,tsx}",
+        'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+    ],
+    theme: {
+        extend: {
+            fontFamily: {
+                'poppins': ['Poppins', 'sans-serif']
+            },
+        },
+        screens: {
+            'sm': '640px',
+            'md': '768px',
+            'lg': '1400px',
+        }
     },
-    screens: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1400px',
-    }
-  },
-  plugins: [
-      require('flowbite/plugin')
-  ],
-}
+    plugins: [
+        require('flowbite/plugin')
+    ],
+});

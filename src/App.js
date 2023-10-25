@@ -158,7 +158,7 @@ function Portfolio() {
            <Route exact path='/Project/CrowdFund/Donate' element={< Donate />}></Route>
            <Route exact path='/Project/PBM' element={< PBM />}></Route>
            <Route exact path='/Project/Chatbot' element={< Chatbot />}></Route> 
-           <Route exact path='/Project/Chatbot/ChatbotPage/:id' element={< ChatbotPage />}></Route>
+           <Route forceRefresh={true} exact path='/Project/Chatbot/ChatbotPage/:id' element={< ChatbotPage />}></Route>
            </Routes>
         </BrowserRouter>
       </>
